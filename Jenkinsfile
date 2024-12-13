@@ -7,12 +7,10 @@ node {
             stage 'Checkout'
         
             git url: 'https://github.com/soooldier/golang-ci-jenkins-pipeline.git'
-        
-            stage 'preTest'
-            sh 'go version'
-            sh 'go mod download'
 
             stage 'Build'
+            sh 'go version'
+            sh 'go mod download'
             sh 'go build .'
             
             stage 'Deploy'
