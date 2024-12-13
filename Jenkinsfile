@@ -1,23 +1,20 @@
-node {
-    def root = tool name: 'Go1.21.9', type: 'go'
-    ws("${JENKINS_HOME}/jobs/${JOB_NAME}/builds/${BUILD_ID}/src/github.com/soooldier/golang-ci-jenkins-pipeline") {
-        withEnv(["GOROOT=${root}/go", "GOPATH=${JENKINS_HOME}/jobs/${JOB_NAME}/builds/${BUILD_ID}/",
-        "PATH+GO=${root}/go/bin"]) {
-            env.PATH="${GOPATH}/bin:$PATH"
-
-            stage 'Checkout'
-            git url: 'https://github.com/soooldier/golang-ci-jenkins-pipeline.git'
-
-            stage 'Build'
-            sh 'go version'
-            sh 'go mod download'
-            sh 'go build .'
-
-            stage 'PreDeploy'
-            sh 'docker version'
-
-            stage 'Deploy'
-            // Do nothing.
+pipeline {
+    agent any
+    stages {
+        stage('Build') {
+            steps {
+                echo 'Building..'
+            }
+        }
+        stage('Test') {
+            steps {
+                echo 'Testing..'
+            }
+        }
+        stage('Deploy') {
+            steps {
+                echo 'Deploying....'
+            }
         }
     }
 }
