@@ -12,7 +12,10 @@ node {
             sh 'go version'
             sh 'go mod download'
             sh 'go build .'
-            
+
+            stage 'PreDeploy'
+            sh 'docker version'
+
             stage 'Deploy'
             // Do nothing.
         }
