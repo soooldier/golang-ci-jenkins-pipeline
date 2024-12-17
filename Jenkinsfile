@@ -1,7 +1,6 @@
 node {
   stage('Prepare') {
     echo "1.Prepare Stage"
-    git credentialsId: 'github', url: 'https://github.com/soooldier/golang-ci-jenkins-pipeline.git'
     env.GIT_COMMIT_SHORT_HASH = sh (script: 'git rev-parse --short HEAD', returnStdout: true).trim()
     env.BUILD_TAG = "${GIT_COMMIT_SHORT_HASH}.${BUILD_NUMBER}"
   }
