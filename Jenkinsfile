@@ -23,6 +23,7 @@ node {
 }
 node('jenkins-slave-k8s-exec') {
   stage('Deploy') {
+    echo "4.Deploy to TKE cluster stage"
     input message: '请确认数据库、配置文件等前置操作是否完成！！！'
     sh "kubectl set image -n enerlink deployment.apps/demo jenkins-demo=ccr.ccs.tencentyun.com/enerlink/${JOB_NAME}:${BUILD_TAG} --record=true"
   }
